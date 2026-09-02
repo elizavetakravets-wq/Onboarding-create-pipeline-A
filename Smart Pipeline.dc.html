@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#1E1F22">
+  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <rect x="6" y="6" width="26" height="29" fill="#3BEA62"/>
+    <rect x="32" y="6" width="26" height="29" fill="#0A8FEA"/>
+    <rect x="6" y="35" width="52" height="23" fill="#12C7A0"/>
+  </svg>
+</template>
+<helmet>
+  <style>
+    html,body{margin:0;height:100%;}
+    a{color:#5545C5;}
+    a:hover{color:#3E3494;}
+    @keyframes blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+    @keyframes bannerIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+    @keyframes popIn{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
+    @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</helmet>
+
+<div style="width:100%;height:100%;min-height:100vh;font-family:system-ui,-apple-system,'Segoe UI',Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;-webkit-font-smoothing:antialiased;box-sizing:border-box;position:relative;background:#F7F8FA;overflow:hidden;color:#27282E;font-size:14px;display:flex;">
+
+    <div style="width:64px;flex-shrink:0;box-sizing:border-box;background:#1E1F22;display:flex;flex-direction:column;overflow:hidden;"><div style="width:64px;height:440px;flex-shrink:0;position:relative;overflow:hidden;"><img src="./assets/main-navigation.svg" style="position:absolute;top:0;left:0;width:64px;height:1024px;max-width:none;"></div><div style="width:64px;height:232px;flex-shrink:0;margin-top:auto;margin-bottom:36px;position:relative;overflow:hidden;"><img src="./assets/main-navigation.svg" style="position:absolute;top:-792px;left:0;width:64px;height:1024px;max-width:none;"></div></div>
+
+    <div style="position:absolute;left:64px;top:0;bottom:0;width:{{sidebarPanelWidth}};background:#F7F8FA;border-right:1px solid #DFE1E5;display:flex;flex-direction:column;align-items:{{sidebarPanelAlign}};padding-top:12px;gap:16px;z-index:4;transition:width .18s ease;">
+      <sc-if value="{{sidebarCollapsed}}" hint-placeholder-val="{{true}}">
+        <div style="width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#6C707E;cursor:pointer;" style-hover="background:#EBECF0;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+        </div>
+        <div onclick="{{toggleSidebar}}" style="width:22px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#6C707E;cursor:pointer;" style-hover="background:#EBECF0;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l6 6-6 6M13 6l6 6-6 6"></path></svg>
+        </div>
+      </sc-if>
+      <sc-if value="{{sidebarExpanded}}" hint-placeholder-val="{{false}}">
+        <div style="display:flex;align-items:center;justify-content:space-between;width:100%;height:40px;padding:10px 12px 4px 16px;box-sizing:border-box;flex-shrink:0;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#27282E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="7" height="16" rx="1"></rect><rect x="12" y="4" width="9" height="16" rx="1"></rect></svg>
+            <span style="font-size:16px;font-weight:600;color:#27282E;white-space:nowrap;">Projects</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:2px;flex-shrink:0;">
+            <div style="width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#6C707E;cursor:pointer;" style-hover="background:#EBECF0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"></path></svg>
+            </div>
+            <div onclick="{{toggleSidebar}}" style="width:24px;height:24px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#6C707E;cursor:pointer;" style-hover="background:#EBECF0;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6l-6 6 6 6M11 6l-6 6 6 6"></path></svg>
+            </div>
+          </div>
+        </div>
+        <div style="width:100%;height:40px;padding:8px 16px;box-sizing:border-box;flex-shrink:0;">
+          <div style="height:24px;border:1px solid #D3D5DB;border-radius:4px;display:flex;align-items:center;padding:0 8px;gap:6px;color:#A8ADBD;font-size:12px;white-space:nowrap;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+            Search by name
+          </div>
+        </div>
+        <div style="width:100%;flex:1;overflow:auto;display:flex;flex-direction:column;padding:8px 16px;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:4px;color:#27282E;font-size:13px;white-space:nowrap;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgb(51,105,214)" stroke-width="1.6"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"></path></svg>
+            {{ projectName }}
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;padding:6px 8px 6px 24px;border-radius:4px;background:rgb(237,243,255);color:#27282E;font-size:13px;font-weight:500;white-space:nowrap;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6F5CFF" stroke-width="1.8"><path d="M12 2 2 8l10 6 10-6z"></path><path d="M2 16l10 6 10-6"></path></svg>
+            {{ pipelineName }}
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{showChatBar}}" hint-placeholder-val="{{false}}">
+        <div style="width:100%;align-self:stretch;margin-top:auto;height:40px;flex-shrink:0;box-sizing:border-box;background:linear-gradient(90deg,#7C4DFF 0%,#6F5CFF 45%,#4C6FFF 100%);box-shadow:0 -2px 12px rgba(111,92,255,.25);display:flex;align-items:center;justify-content:{{chatBarJustify}};padding:0 {{chatBarPad}};">
+          <div ref="{{chatBarRef}}" style="position:relative;">
+            <div onclick="{{toggleChatBarTooltip}}" aria-label="Send feedback" style="position:relative;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;border-radius:6px;background:rgba(255,255,255,.16);" style-hover="background:rgba(255,255,255,.26);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"></path></svg>
+              <span style="position:absolute;top:-1px;right:-1px;width:7px;height:7px;border-radius:50%;background:#fff;border:1.5px solid #6F5CFF;"></span>
+            </div>
+            <sc-if value="{{chatBarTooltipOpen}}" hint-placeholder-val="{{false}}">
+              <div onclick="{{stop}}" role="dialog" aria-label="Feedback" style="position:absolute;left:0;bottom:36px;width:260px;background:#fff;border-radius:8px;box-shadow:0 4px 24px rgba(0,28,54,.16),0 2px 6px rgba(0,28,54,.06);padding:16px;z-index:65;animation:popIn .15s ease;cursor:default;">
+                <div style="display:flex;align-items:flex-start;gap:8px;">
+                  <div style="width:26px;height:26px;border-radius:50%;background:#F3F3FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6F5CFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"></rect><path d="M12 8v13"></path><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path><path d="M7.5 8a2.5 2.5 0 1 1 0-5C10 3 12 8 12 8"></path><path d="M16.5 8a2.5 2.5 0 1 0 0-5C14 3 12 8 12 8"></path></svg>
+                  </div>
+                  <p style="margin:0;flex:1;font-size:14px;line-height:20px;font-weight:600;color:#27282E;">How did that go? We'd love to hear.</p>
+                  <div onclick="{{closeChatBarTooltip}}" style="flex-shrink:0;width:18px;height:18px;color:#6C707E;cursor:pointer;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+                  </div>
+                </div>
+                <div style="margin-top:12px;">
+                  <div onclick="{{respondSurvey}}" style="height:28px;display:inline-flex;align-items:center;padding:0 14px;background:#6F5CFF;border-radius:4px;color:#fff;font-weight:500;cursor:pointer;font-size:13px;" style-hover="background:#5F4CF0;">Take the survey</div>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{showSaveConfirm}}" hint-placeholder-val="{{false}}">
+      <div onclick="{{closeSave}}" style="position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:70;display:flex;align-items:center;justify-content:center;">
+        <div onclick="{{stop}}" style="width:540px;background:#fff;border-radius:8px;box-shadow:0 4px 24px rgba(0,28,54,.1),0 2px 6px rgba(0,28,54,.04);padding:24px 32px 28px;position:relative;cursor:default;">
+          <div onclick="{{closeSave}}" style="position:absolute;top:16px;right:16px;width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#6C707E;cursor:pointer;" style-hover="background:#F7F8FA;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+          </div>
+          <div style="font-size:20px;line-height:24px;font-weight:600;color:#27282E;">Save pipeline changes</div>
+          <div style="color:#494B57;line-height:20px;margin-top:8px;">Pipeline settings will be committed to the <span style="font-weight:600;color:#27282E;">teamcity-branchable-settings</span> repository.</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:20px;color:#27282E;font-weight:500;">
+            Branch
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v5M12 8h.01"></path></svg>
+          </div>
+          <div style="display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 10px;background:#EBECF0;border-radius:4px;margin-top:8px;cursor:pointer;color:#27282E;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"></circle><circle cx="6" cy="18" r="2.4"></circle><circle cx="18" cy="6" r="2.4"></circle><path d="M6 8.4v7.2M18 8.4c0 3.2-3 4.6-6 4.6"></path></svg>
+            <span style="font-weight:500;">main</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+          </div>
+          <div style="margin-top:20px;color:#27282E;">Commit message <span style="color:#6C707E;">(optional)</span></div>
+          <textarea placeholder="Update pipeline configuration" style="display:block;width:100%;height:96px;margin-top:8px;border:1px solid #D3D5DB;border-radius:4px;padding:8px 12px;font-family:inherit;font-size:14px;line-height:20px;color:#27282E;resize:vertical;outline:none;box-sizing:border-box;"></textarea>
+          <sc-if value="{{isConverted}}" hint-placeholder-val="{{true}}">
+            <div style="margin-top:16px;background:#F7F6FF;border:1px solid #A599FF;border-radius:8px;">
+              <div style="display:flex;gap:8px;padding:8px 8px 8px 12px;">
+                <div style="flex-shrink:0;padding-top:2px;overflow:clip;width:16px;height:16px;">
+                  <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M7 0C10.866 0 14 3.13401 14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0ZM5.94531 5.90625C5.78586 5.90628 5.65134 5.95869 5.54199 6.06348C5.4327 6.16827 5.37793 6.29824 5.37793 6.45312C5.37796 6.61257 5.43265 6.74482 5.54199 6.84961C5.65134 6.94984 5.78586 6.99997 5.94531 7H6.54004V9.91309H5.82227C5.66737 9.91311 5.53513 9.96552 5.42578 10.0703C5.31649 10.1751 5.26172 10.3028 5.26172 10.4531C5.26175 10.6126 5.31644 10.7448 5.42578 10.8496C5.53513 10.9498 5.66737 11 5.82227 11H8.38574C8.54518 11 8.67743 10.9498 8.78223 10.8496C8.89157 10.7448 8.94626 10.6126 8.94629 10.4531C8.94629 10.3027 8.8916 10.1751 8.78223 10.0703C8.67741 9.96549 8.54525 9.91309 8.38574 9.91309H7.77734V6.61719C7.77734 6.39844 7.72493 6.22526 7.62012 6.09766C7.5153 5.97005 7.36263 5.90625 7.16211 5.90625H5.94531ZM6.93652 3.17188C6.68592 3.1719 6.46937 3.26077 6.28711 3.43848C6.10946 3.61619 6.02051 3.83502 6.02051 4.09473C6.02054 4.34077 6.1094 4.55504 6.28711 4.7373C6.46937 4.91501 6.68592 5.00388 6.93652 5.00391C7.19167 5.00391 7.40823 4.91496 7.58594 4.7373C7.76364 4.55504 7.85251 4.34077 7.85254 4.09473C7.85254 3.83496 7.76367 3.61621 7.58594 3.43848C7.4082 3.26074 7.19173 3.17188 6.93652 3.17188Z" fill="#6F5CFF"></path></svg>
+                </div>
+                <div style="flex:1;display:flex;flex-direction:column;gap:8px;">
+                  <div style="font-size:14px;line-height:20px;color:#27282E;">Your changes will be committed separately from the pipeline configuration version upgrade.</div>
+                  <span style="font-size:14px;line-height:20px;color:#5545C5;cursor:pointer;">View changelog</span>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+          <div style="display:flex;gap:8px;margin-top:20px;">
+            <div onclick="{{confirmSave}}" style="height:32px;display:flex;align-items:center;padding:0 16px;background:#6F5CFF;border-radius:4px;color:#fff;cursor:pointer;font-weight:500;" style-hover="background:#5F4CF0;">Commit changes</div>
+            <div onclick="{{closeSave}}" style="height:32px;display:flex;align-items:center;padding:0 16px;border:1px solid #D3D5DB;border-radius:4px;color:#27282E;cursor:pointer;font-weight:500;background:#fff;" style-hover="background:#F7F8FA;">Cancel</div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <div style="position:absolute;left:{{mainContentLeft}};top:0;right:0;bottom:0;background:#FFFFFF;display:flex;flex-direction:column;transition:left .18s ease;">
+
+      <sc-if value="{{bannerVisible}}" hint-placeholder-val="{{true}}">
+        <div style="flex:0 0 auto;border-top:1px solid #E1DEFF;border-bottom:1px solid #E1DEFF;display:flex;align-items:center;gap:12px;padding:8px 20px;background:linear-gradient(180deg,#ECE3FF 0%,#F7F7FA 100%);animation:bannerIn .18s ease;">
+          <span style="width:28px;height:28px;border-radius:50%;background:#E1DEFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="13" height="13" viewBox="0 0 14 13" fill="none" stroke="#5545C5" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.53v10.14M7 2.53H5.24c-.33 0-.65-.13-.88-.37a1.27 1.27 0 0 1 0-1.79c.23-.24.55-.37.88-.37 1.74 0 2.24 2.53 2.24 2.53Zm0 0h2.24c.33 0 .65-.13.88-.37a1.27 1.27 0 0 0 0-1.79 1.25 1.25 0 0 0-.88-.37c-1.74 0-2.24 2.53-2.24 2.53Zm5.07 3.17v4.94c0 .71 0 1.06-.14 1.33-.12.24-.31.44-.55.56-.27.14-.63.14-1.34.14H3.96c-.71 0-1.06 0-1.33-.14a1.25 1.25 0 0 1-.55-.56c-.14-.27-.14-.62-.14-1.33V5.7M1.67 3.55v1.14c0 .35 0 .53.07.66.06.12.16.22.28.28.13.07.31.07.66.07h10.64c.35 0 .53 0 .66-.07.12-.06.22-.16.28-.28.07-.13.07-.31.07-.66V3.55c0-.35 0-.53-.07-.66a.63.63 0 0 0-.28-.28c-.13-.07-.31-.07-.66-.07H2.68c-.35 0-.53 0-.66.07a.63.63 0 0 0-.28.28c-.07.13-.07.31-.07.66Z"></path></svg>
+          </span>
+          <span style="font-size:14px;color:#27282E;flex:1;min-width:0;">Help us improve TeamCity! We're looking for users to join a 60-minute interview and receive $100.</span>
+          <span style="display:inline-flex;align-items:center;height:27px;padding:0 20px;border:1px solid #9789FF;color:#5545C5;border-radius:4px;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap;background:transparent;" onclick="{{collapseBanner}}">Take the survey</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5545C5" stroke-width="1.6" style="cursor:pointer;flex-shrink:0;" onclick="{{collapseBanner}}"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+        </div>
+      </sc-if>
+
+      <div style="height:44px;flex:0 0 44px;border-bottom:1px solid #DFE1E5;display:flex;align-items:center;padding:0 16px 0 24px;gap:8px;">
+        <div style="display:flex;align-items:center;gap:8px;color:#27282E;flex:1;min-width:0;">
+          <span style="cursor:pointer;font-size:14px;">{{ projectName }}</span>
+          <span style="color:#DFE1E5;">/</span>
+          <span style="cursor:pointer;font-size:14px;">{{ pipelineName }}</span>
+          <span style="color:#DFE1E5;">/</span>
+          <span style="cursor:pointer;font-size:14px;font-weight:700;color:#27282E;">Run #19</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <sc-if value="{{showAiAssistant}}" hint-placeholder-val="{{true}}">
+            <div style="display:flex;align-items:center;gap:8px;height:24px;padding:2px 8px;border:1px solid #D3D5DB;border-radius:4px;color:#A8ADBD;font-size:12px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+              Search
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="flex:0 0 auto;padding:16px 24px 12px;display:flex;align-items:center;gap:8px;">
+        <img src="./assets/icon-pipeline-fork.svg" alt="" style="width:18px;height:18px;">
+        <span style="font-size:24px;font-weight:590;letter-spacing:0.3px;color:rgb(36,37,40);flex:1;min-width:0;">{{ pipelineName }}</span>
+        <div onclick="{{openSaveAndRun}}" style="display:flex;align-items:center;height:28px;padding:0 16px;background:#6F5CFF;border-radius:4px;color:#fff;cursor:pointer;font-weight:500;" style-hover="background:#5F4CF0;">Save and run</div>
+        <div onclick="{{openSave}}" style="display:inline-flex;align-items:center;height:28px;padding:0 18px;background:#fff;box-shadow:inset 0 0 0 1px rgb(211,213,219);border-radius:4px;color:#27282E;font-weight:500;cursor:pointer;" style-hover="background:#F7F8FA;">Save</div>
+        <div style="width:28px;height:28px;border:1px solid #D3D5DB;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#6C707E;cursor:pointer;background:#fff;" style-hover="background:#F7F8FA;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg>
+        </div>
+        <div onclick="{{exitSettings}}" style="display:flex;align-items:center;gap:8px;height:28px;background:#fff;box-shadow:inset 0 0 0 1px rgb(211,213,219);border-radius:4px;padding:0 6px 0 12px;color:#27282E;cursor:pointer;font-weight:500;" style-hover="background:#F7F8FA;">
+          <span>Exit settings</span>
+          <span style="width:22px;height:22px;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#6C707E;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l-5-5 5-5M5 12h11"></path></svg>
+          </span>
+        </div>
+      </div>
+
+      <div style="height:1px;background:#DFE1E5;flex-shrink:0;"></div>
+
+      <div style="flex:1;display:flex;overflow:hidden;">
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden;">
+
+          <div style="flex:0 0 auto;min-height:48px;background:#F7F8FA;display:flex;align-items:center;gap:10px;padding:12px 24px 16px;">
+            <div style="display:inline-flex;height:28px;border:1px solid #D3D5DB;border-radius:4px;overflow:hidden;">
+              <div onclick="{{showVisual}}" style="display:flex;align-items:center;padding:0 14px;cursor:pointer;font-size:14px;color:#27282E;{{visualTabStyle}}">Visual</div>
+              <div onclick="{{showYaml}}" style="display:flex;align-items:center;padding:0 14px;cursor:pointer;font-size:14px;color:#27282E;{{yamlTabStyle}}">YAML</div>
+            </div>
+
+            <sc-if value="{{isConverted}}" hint-placeholder-val="{{true}}">
+              <div ref="{{badgeRef}}" style="position:relative;margin-left:2px;">
+                
+                <sc-if value="{{badgeMessageOpen}}" hint-placeholder-val="{{false}}">
+                  <div style="position:absolute;top:28px;left:0;width:360px;z-index:45;cursor:default;font-weight:400;color:#27282E;animation:popIn .15s ease;">
+                    <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px rgba(17,41,61,.3);display:flex;flex-direction:column;gap:16px;padding:12px 12px 16px 12px;">
+                      <div style="display:flex;flex-direction:column;gap:4px;">
+                        <div style="font-size:14px;line-height:20px;">This YAML was automatically converted to the latest version (v2)</div>
+                        <div style="font-size:12px;line-height:16px;color:#6C707E;">The saved version uses an older schema. Saving the pipeline will update the file to v2.</div>
+                      </div>
+                      <div style="display:flex;align-items:center;gap:12px 16px;flex-wrap:wrap;">
+                        <div onclick="{{toggleShowChanges}}" style="height:28px;display:inline-flex;align-items:center;padding:4px 16px;border-radius:4px;color:#fff;font-size:14px;cursor:pointer;background:#6F5CFF;font-weight:500;" style-hover="opacity:.88;">{{changesButtonLabel}}</div>
+                        <span style="display:inline-flex;align-items:center;gap:6px;color:#5545C5;font-size:14px;line-height:20px;cursor:pointer;white-space:nowrap;">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><path d="M15 3h6v6M10 14L21 3"></path></svg>
+                          How to upgrade manually
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-if>
+          </div>
+
+          <sc-if value="{{isYaml}}" hint-placeholder-val="{{false}}">
+            <div style="flex:1;overflow:auto;background:#fff;font-family:ui-monospace,Menlo,'Cascadia Mono',Consolas,monospace;font-size:13px;padding-top:8px;">
+              <sc-for list="{{codeLines}}" as="ln" hint-placeholder-count="21">
+                <div style="display:flex;align-items:stretch;min-height:22px;line-height:22px;background:{{ln.bg}};">
+                  <div style="flex:0 0 58px;text-align:right;padding-right:16px;color:#6C707E;border-right:1px solid #EBECF0;user-select:none;">{{ln.n}}</div>
+                  <div title="{{ln.markerTitle}}" style="flex:0 0 3px;margin-left:-2px;background:{{ln.markerColor}};border-radius:1px;"></div>
+                  <div style="padding-left:18px;white-space:pre;flex:1;"><sc-if value="{{ln.isVal}}" hint-placeholder-val="{{false}}"><span style="color:#27282E;">{{ln.valText}}</span></sc-if><sc-if value="{{ln.isKey}}" hint-placeholder-val="{{true}}"><span style="color:#1750EB;">{{ln.keyText}}</span><span style="color:#27282E;">{{ln.rest}}</span></sc-if><sc-if value="{{ln.cursor}}" hint-placeholder-val="{{false}}"><span style="display:inline-block;width:1.5px;height:14px;background:#27282E;vertical-align:middle;margin-left:1px;animation:blink 1s step-end infinite;"></span></sc-if></div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{isVisual}}" hint-placeholder-val="{{true}}">
+            <div style="flex:1;overflow:auto;background:#F7F8FA;padding:24px;position:relative;">
+              <div onclick="{{selectPipelineMode}}" style="display:inline-block;{{canvasBoxStyle}}border-radius:12px;padding:12px;cursor:pointer;">
+                <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;">
+                  <div style="display:flex;gap:4px;align-items:center;">
+                    <img src="./assets/icon-settings-gear.svg" alt="" style="width:16px;height:16px;">
+                    <span style="font-size:12px;line-height:16px;color:{{pipelineLabelColor}};">Pipeline settings</span>
+                  </div>
+                  <sc-if value="{{isPipelineMode}}" hint-placeholder-val="{{true}}"><span style="font-size:12px;line-height:16px;color:#6F5CFF;font-weight:700;">Editing</span></sc-if>
+                </div>
+                <div style="display:flex;align-items:center;gap:0;">
+                  <div onclick="{{selectJobPublish}}" style="width:195px;height:88px;background:#fff;border-radius:10px;padding:10px 12px;box-sizing:border-box;cursor:pointer;{{publishCardStyle}}">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <img src="./assets/icon-job-diamond.svg" alt="" style="width:14px;height:14px;">
+                      <span style="flex:1;font-size:12px;color:#6F5CFF;font-weight:600;">Editing</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:#6C707E;"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg>
+                    </div>
+                    <div style="font-size:14px;font-weight:500;color:#27282E;margin-top:8px;">Publish artifacts</div>
+                  </div>
+                  <svg width="40" height="100" viewBox="0 0 40 100" style="flex-shrink:0;overflow:visible;">
+                    <circle cx="0" cy="44" r="3" fill="#C6CBD4"></circle>
+                    <path d="M0 44 C 18 44, 18 12, 40 12" stroke="#C6CBD4" fill="none" stroke-width="1.5" stroke-linecap="round"></path>
+                    <path d="M0 44 C 18 44, 18 76, 40 76" stroke="#C6CBD4" fill="none" stroke-width="1.5" stroke-linecap="round"></path>
+                    <circle cx="40" cy="12" r="3" fill="#C6CBD4"></circle>
+                    <circle cx="40" cy="76" r="3" fill="#C6CBD4"></circle>
+                  </svg>
+                  <div style="display:flex;flex-direction:column;gap:12px;">
+                    <div onclick="{{selectJobFrontend}}" style="width:195px;height:88px;background:#fff;border-radius:10px;padding:10px 12px;box-sizing:border-box;cursor:pointer;{{frontendCardStyle}}">
+                      <div style="display:flex;align-items:center;gap:6px;">
+                        <img src="./assets/icon-job-diamond.svg" alt="" style="width:14px;height:14px;">
+                        <span style="flex:1;font-size:12px;color:#6F5CFF;font-weight:600;">Editing</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:#6C707E;"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg>
+                      </div>
+                      <div style="font-size:14px;font-weight:500;color:#27282E;margin-top:8px;">Frontend - Build</div>
+                    </div>
+                    <div onclick="{{selectJobBackend}}" style="width:195px;height:88px;background:#fff;border-radius:10px;padding:10px 12px;box-sizing:border-box;cursor:pointer;{{backendCardStyle}}">
+                      <div style="display:flex;align-items:center;gap:6px;">
+                        <img src="./assets/icon-job-diamond.svg" alt="" style="width:14px;height:14px;">
+                        <span style="flex:1;font-size:12px;color:#6F5CFF;font-weight:600;">Editing</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:#6C707E;"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg>
+                      </div>
+                      <div style="font-size:14px;font-weight:500;color:#27282E;margin-top:8px;">Backend - Build</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="width:195px;height:88px;background:#F7F6FF;border:1.5px dashed #C4BDFF;border-radius:10px;padding:10px 12px;box-sizing:border-box;cursor:pointer;margin-top:12px;">
+                  <div style="display:flex;gap:4px;align-items:center;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.375" stroke="#2E55A3" stroke-width="1.25"></circle><path d="M8 5v6M5 8h6" stroke="#2E55A3" stroke-width="1.25" stroke-linecap="round"></path></svg>
+                    <span style="font-size:12px;line-height:16px;color:#5545C5;">Add new job</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{isVisual}}" hint-placeholder-val="{{true}}">
+          <div style="width:444px;flex-shrink:0;border-left:1px solid #DFE1E5;background:#fff;display:flex;flex-direction:column;height:100%;box-sizing:border-box;overflow:auto;padding:24px 24px 32px;box-sizing:border-box;">
+            <div style="display:flex;align-items:stretch;height:32px;">
+              <span onclick="{{selectPipelineMode}}" style="position:relative;{{pipelineZ}}display:flex;align-items:center;padding:0 16px;font-size:14px;color:#27282E;cursor:pointer;border-radius:6px 0 0 6px;box-sizing:border-box;{{pipelineTabStyle}}">Pipeline</span>
+              <div style="position:relative;margin-left:-1px;{{jobZ}}">
+                <div style="height:32px;display:flex;align-items:stretch;border-radius:0 6px 6px 0;overflow:hidden;box-sizing:border-box;{{jobTabStyle}}">
+                  <span onclick="{{selectSelectedJobMode}}" style="display:flex;align-items:center;padding:0 16px;font-size:14px;color:#27282E;cursor:pointer;white-space:nowrap;">Job: {{selectedJobName}}</span>
+                  <span style="width:1px;align-self:stretch;margin:6px 0;background:{{jobDividerColor}};"></span>
+                  <span onclick="{{toggleJobDropdown}}" style="display:flex;align-items:center;justify-content:center;width:32px;cursor:pointer;color:#27282E;flex-shrink:0;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+                  </span>
+                </div>
+                <sc-if value="{{jobDropdownOpen}}" hint-placeholder-val="{{false}}">
+                  <div style="position:absolute;top:36px;left:0;width:200px;background:#fff;border-radius:6px;box-shadow:0 4px 16px rgba(0,28,54,.14);padding:4px;z-index:20;">
+                    <div onclick="{{selectJobPublish}}" style="padding:8px 10px;border-radius:4px;font-size:14px;color:#27282E;cursor:pointer;" style-hover="background:#F7F8FA;">Publish artifacts</div>
+                    <div onclick="{{selectJobFrontend}}" style="padding:8px 10px;border-radius:4px;font-size:14px;color:#27282E;cursor:pointer;" style-hover="background:#F7F8FA;">Frontend - Build</div>
+                    <div onclick="{{selectJobBackend}}" style="padding:8px 10px;border-radius:4px;font-size:14px;color:#27282E;cursor:pointer;" style-hover="background:#F7F8FA;">Backend - Build</div>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+
+
+
+
+            <sc-if value="{{isPipelineMode}}" hint-placeholder-val="{{true}}">
+              <div style="display:flex;flex-direction:column;margin-top:6px;">
+                <div style="display:flex;align-items:center;padding:14px 0;border-bottom:1px solid #EBECF0;">
+                  <span style="flex:1;font-size:15px;font-weight:600;color:#27282E;">Unit Tests Execution</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.6" style="cursor:pointer;flex-shrink:0;"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
+                </div>
+                <sc-for list="{{pipelineSettingsRows}}" as="row" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:6px;padding:14px 0;border-bottom:1px solid #EBECF0;">
+                    <span style="font-size:14px;font-weight:600;color:#27282E;">{{ row.label }}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+                    <span style="font-size:14px;color:#6C707E;">{{ row.count }}</span>
+                    <div style="flex:1;"></div>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.6" style="cursor:pointer;flex-shrink:0;"><path d="M12 5v14M5 12h14"></path></svg>
+                  </div>
+                </sc-for>
+                <div style="display:flex;align-items:flex-start;gap:6px;padding:14px 0;border-bottom:1px solid #EBECF0;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="2.5" style="margin-top:5px;cursor:pointer;flex-shrink:0;"><path d="M9 6l6 6-6 6"></path></svg>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;gap:6px;">
+                      <span style="font-size:14px;font-weight:600;color:#27282E;">Repository</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+                      <span style="font-size:14px;color:#6C707E;">1</span>
+                    </div>
+                    <div style="font-size:13px;color:#6C707E;margin-top:4px;">https://github.com/johnsonuk/marketdata-api-js</div>
+                  </div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.6" style="cursor:pointer;flex-shrink:0;"><path d="M12 5v14M5 12h14"></path></svg>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;padding:14px 0;">
+                  <span style="font-size:14px;font-weight:600;color:#27282E;">Integrations</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+                  <span style="font-size:14px;color:#6C707E;">0</span>
+                  <div style="flex:1;"></div>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.6" style="cursor:pointer;flex-shrink:0;"><path d="M12 5v14M5 12h14"></path></svg>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{isJobMode}}" hint-placeholder-val="{{false}}">
+            <div style="display:flex;align-items:flex-start;margin-top:20px;">
+              <div style="flex:1;">
+                <div style="font-size:15px;font-weight:600;color:#27282E;">{{ selectedJobName }}</div>
+                <div style="font-size:13px;color:#6C707E;margin-top:2px;">{{ selectedJobNum }}</div>
+              </div>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.6" style="cursor:pointer;flex-shrink:0;margin-top:2px;"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:20px;cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#27282E" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#27282E;">Dependencies</span>
+              <span style="font-size:14px;color:#6C707E;">{{ selectedJobDeps.length }}</span>
+            </div>
+            <sc-if value="{{ selectedJobDeps.length }}" hint-placeholder-val="{{true}}">
+              <div style="font-size:13px;color:#6C707E;margin-top:6px;margin-left:18px;">{{ selectedJobDepsText }}</div>
+            </sc-if>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:24px;cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#27282E" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#27282E;">Steps</span>
+              <span style="font-size:14px;color:#6C707E;">{{ buildSteps.length }}</span>
+              <div style="flex:1;"></div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" style="cursor:pointer;"><path d="M12 5v14M5 12h14"></path></svg>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px;">
+              <sc-for list="{{buildSteps}}" as="step" hint-placeholder-count="3">
+                <div style="border:1px solid #DFE1E5;border-radius:8px;padding:12px;display:flex;gap:12px;align-items:flex-start;">
+                  <div style="width:28px;height:28px;border-radius:6px;background:#EBECF0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#494B57;flex-shrink:0;">{{ step.num }}</div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="display:flex;align-items:center;gap:6px;color:#6C707E;font-size:12px;">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8"><path d="M9 18l-5-6 5-6M15 6l5 6-5 6"></path></svg>
+                      {{ step.runnerLabel }}
+                    </div>
+                    <div style="font-size:15px;font-weight:600;color:#27282E;margin-top:2px;">{{ step.name }}</div>
+                    <sc-for list="{{step.meta}}" as="line" hint-placeholder-count="2">
+                      <div style="font-size:12px;line-height:18px;color:#6C707E;margin-top:6px;">{{ line }}</div>
+                    </sc-for>
+                  </div>
+                  <span style="position:relative;width:32px;height:18px;border-radius:9px;background:#6F5CFF;flex-shrink:0;"><span style="position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:50%;background:#fff;"></span></span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="font-size:13px;color:#6C707E;margin-top:16px;">Select a runner for the next step</div>
+            <div style="display:flex;gap:10px;margin-top:10px;">
+              <sc-for list="{{runners}}" as="runner" hint-placeholder-count="6">
+                <div style="display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;">
+                  <div style="width:56px;height:56px;border-radius:8px;overflow:hidden;background:#F2F3F5;display:flex;align-items:center;justify-content:center;">
+                    <sc-if value="{{runner.iconSrc}}" hint-placeholder-val="{{''}}"><img src="{{ runner.iconSrc }}" alt="" style="width:100%;height:100%;object-fit:cover;"></sc-if>
+                    <sc-if value="{{runner.iconHtml}}" hint-placeholder-val="{{''}}">{{ runner.iconEl }}</sc-if>
+                    <sc-if value="{{!runner.iconSrc && !runner.iconHtml}}" hint-placeholder-val="{{false}}"><span style="color:#6C707E;font-size:16px;font-weight:600;">{{ runner.glyph }}</span></sc-if>
+                  </div>
+                  <span style="font-size:10px;font-weight:600;letter-spacing:.3px;color:#6C707E;white-space:nowrap;">{{ runner.label }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:28px;cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#27282E" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#27282E;">Build features</span>
+              <span style="font-size:14px;color:#6C707E;">5</span>
+              <div style="flex:1;"></div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" style="cursor:pointer;"><path d="M12 5v14M5 12h14"></path></svg>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px;">
+              <div style="background:#F7F8FA;border-radius:8px;padding:12px;">
+                <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#27282E;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8"><circle cx="6" cy="6" r="2.2"></circle><circle cx="6" cy="18" r="2.2"></circle><circle cx="18" cy="9" r="2.2"></circle><path d="M6 8.2v7.6M18 11.2c0 3-2.5 5-6 5"></path></svg>
+                  Free disk space
+                </div>
+                <div style="font-size:13px;line-height:18px;color:#6C707E;margin-top:6px;">Ensure there is at least 3gb of free space on the agent before running this build.</div>
+              </div>
+              <div style="background:#F7F8FA;border-radius:8px;padding:12px;">
+                <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#27282E;">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8"><circle cx="6" cy="6" r="2.2"></circle><circle cx="6" cy="18" r="2.2"></circle><circle cx="18" cy="9" r="2.2"></circle><path d="M6 8.2v7.6M18 11.2c0 3-2.5 5-6 5"></path></svg>
+                  Free disk space
+                </div>
+                <div style="font-size:13px;line-height:18px;color:#6C707E;margin-top:6px;">Ensure there is at least 3gb of free space on the agent before running this build.</div>
+              </div>
+              <span style="font-size:13px;color:#5545C5;cursor:pointer;">Show 5 build features</span>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:28px;cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#27282E" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#27282E;">Optimizations</span>
+              <span style="font-size:14px;color:#6C707E;">1</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;margin-top:14px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="position:relative;width:32px;height:18px;border-radius:9px;background:#D3D5DB;flex-shrink:0;"><span style="position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;"></span></span>
+                <span style="font-size:14px;color:#27282E;">Parallel Tests</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <span style="position:relative;width:32px;height:18px;border-radius:9px;background:#6F5CFF;flex-shrink:0;"><span style="position:absolute;top:2px;left:16px;width:14px;height:14px;border-radius:50%;background:#fff;"></span></span>
+                <span style="font-size:14px;color:#27282E;">Reuse Job Results</span>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:28px;cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#27282E" stroke-width="2.2"><path d="M6 9l6 6 6-6"></path></svg>
+              <span style="font-size:14px;font-weight:600;color:#27282E;">Run on</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:12px;">
+              <div style="flex:1;height:32px;border:1px solid #D3D5DB;border-radius:4px;display:flex;align-items:center;padding:0 10px;gap:6px;color:#A8ADBD;font-size:14px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+                Text
+                <div style="flex:1;"></div>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+              </div>
+              <span style="font-size:14px;color:#5545C5;font-weight:500;cursor:pointer;white-space:nowrap;">Done</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" style="cursor:pointer;flex-shrink:0;"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" style="cursor:pointer;flex-shrink:0;"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"></path></svg>
+            </div>
+            <div style="font-size:12px;color:#A8ADBD;margin-top:6px;">Help text</div>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:28px;">
+              <span style="font-size:14px;font-weight:600;color:#27282E;">Artifacts</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+              <div style="flex:1;"></div>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" style="cursor:pointer;"><path d="M12 5v14M5 12h14"></path></svg>
+            </div>
+
+            <div style="display:flex;align-items:center;gap:6px;margin-top:20px;color:#A8ADBD;cursor:pointer;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#A8ADBD" stroke-width="2.2"><path d="M9 6l6 6-6 6"></path></svg>
+              <span style="font-size:14px;font-weight:600;">Repository</span>
+            </div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+
+      <sc-if value="{{saved}}" hint-placeholder-val="{{false}}">
+        <div onclick="{{dismissToast}}" style="position:absolute;bottom:24px;right:24px;width:320px;z-index:60;animation:toastIn .2s ease;cursor:pointer;">
+          <div style="background:#2B2D30;box-shadow:0 2px 4px rgba(17,41,61,.3);border-radius:8px;">
+            <div style="display:flex;gap:8px;align-items:flex-start;padding:12px;">
+              <div style="flex-shrink:0;padding-top:2px;width:16px;height:16px;">
+                <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M7 14C10.866 14 14 10.866 14 7C14 3.13401 10.866 0 7 0C3.13401 0 0 3.13401 0 7C0 10.866 3.13401 14 7 14Z" fill="#1F7536"></path><path d="M3.7 7.1L5.8 9.2L10 5" stroke="white" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:4px;">
+                <p style="margin:0;font-size:14px;line-height:20px;color:#fff;">Pipeline changes committed successfully</p>
+                <p style="margin:0;font-size:12px;line-height:16px;color:#fff;">{{savedLabel}}</p>
+              </div>
+              <div style="width:16px;height:16px;flex-shrink:0;color:#B7BAC4;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+
+    </div>
+  </div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:1024},&quot;startTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;visual&quot;,&quot;yaml&quot;],&quot;default&quot;:&quot;visual&quot;,&quot;tsType&quot;:&quot;'visual'|'yaml'&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;showAiAssistant&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;surveySystemEnabled&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;projectName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Coherent project&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pipelineName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Demo Pipeline&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;onExit&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;},&quot;onOpenRun&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;() =&gt; void&quot;}}">
+const ICON_FOLDER = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"></path></svg>';
+const ICON_FOLDER_ALERT = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC3645" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"></path><circle cx="18" cy="7" r="4" fill="#CC3645" stroke="none"></circle><path d="M18 5.4v1.8M18 8.6h.01" stroke="#fff" stroke-width="1.2"></path></svg>';
+const ICON_FOLDER_OPEN = '<svg width="14" height="14" viewBox="0 0 24 24" fill="#EAF6EC" stroke="#1F8039" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2-2h4l2 2h6a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"></path></svg>';
+const ICON_SUCCESS = '<svg width="14" height="14" viewBox="0 0 14 14" fill="#D4E2FF" stroke="#315FBD" stroke-width="1.25"><path d="M7 .7 12.5 4v6L7 13.3 1.5 10V4z"></path></svg>';
+const ICON_FAIL = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#CC3645" stroke-width="1.8"><path d="M12 2 21 7v10l-9 5-9-5V7z"></path><path d="M9 9l6 6M15 9l-6 6"></path></svg>';
+const TREE_ITEMS = [
+  { label: 'Overview', level: 0, icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6C707E" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>', color: '#27282E', bg: 'transparent' },
+  { label: 'Compliance Audit', level: 0, icon: ICON_FOLDER_ALERT, color: '#27282E', bg: 'transparent' },
+  { label: 'Production Environment', level: 0, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Frontend Application', level: 1, icon: ICON_SUCCESS, color: '#27282E', bg: 'transparent' },
+  { label: 'Full Test Suite', level: 1, icon: ICON_FAIL, color: '#27282E', bg: 'transparent' },
+  { label: 'Continuous Integration', level: 1, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Blue-Green Deployment', level: 0, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Release Management', level: 0, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Coherent project', level: 0, icon: ICON_FOLDER_OPEN, color: '#27282E', bg: 'transparent' },
+  { label: 'API Services CI/CD', level: 1, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Source Code Compilation', level: 2, icon: ICON_SUCCESS, color: '#27282E', bg: 'transparent' },
+  { label: 'Smart Pipeline', level: 2, icon: ICON_SUCCESS, color: '#27282E', bg: 'transparent' },
+  { label: 'Unit Tests Execution', level: 2, icon: ICON_FAIL, color: '#27282E', bg: 'transparent' },
+  { label: 'Wise Build Configuration', level: 2, icon: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5545C5" stroke-width="1.8"><path d="M12 2 2 8l10 6 10-6z"></path><path d="M2 16l10 6 10-6"></path></svg>', color: '#5545C5', bg: '#EDE9FF' },
+  { label: 'Source Code Compilation', level: 2, icon: ICON_FAIL, color: '#27282E', bg: 'transparent' },
+  { label: 'API Services Tests Execution', level: 2, icon: ICON_FAIL, color: '#27282E', bg: 'transparent' },
+  { label: 'API Gateway Management', level: 2, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Security and Compliance', level: 0, icon: ICON_FOLDER_ALERT, color: '#27282E', bg: 'transparent' },
+  { label: 'Compliance and Audit', level: 0, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+  { label: 'Microservices CI/CD', level: 0, icon: ICON_FOLDER, color: '#27282E', bg: 'transparent' },
+].map(it => ({ ...it, pad: 16 + it.level * 16 }));
+
+const KEY_LINES = [
+  {k:'version', rest:': 2'},
+  {k:'name', rest:': __PIPELINE_NAME__'},
+  {k:'jobs', rest:':'},
+  {k:'  Frontend - Build', rest:':'},
+  {k:'    runs-on', rest:':'},
+  {k:'      type', rest:': e1-standard-2'},
+  {k:'      image', rest:': ubuntu-2004'},
+  {k:'    steps', rest:':'},
+  {val:'      - name: Install dependencies'},
+  {val:'        command: npm ci'},
+  {val:'      - name: Lint'},
+  {val:'        command: npm run lint'},
+  {val:'      - name: Build production bundle'},
+  {val:'        command: npm run build'},
+  {val:'      - name: Run unit tests'},
+  {val:'        command: npm test -- --ci --coverage'},
+  {k:'  Backend - Build', rest:':'},
+  {k:'    runs-on', rest:':'},
+  {k:'      type', rest:': e1-standard-4'},
+  {k:'      image', rest:': ubuntu-2004'},
+  {k:'    steps', rest:':'},
+  {val:'      - name: Compile & package'},
+  {val:'        task: maven'},
+  {val:'        path_to_pom: pom.xml'},
+  {val:'        goals: clean package -DskipTests'},
+  {val:'      - name: Run unit tests'},
+  {val:'        task: maven'},
+  {val:'        goals: test'},
+  {k:'  Publish artifacts', rest:':', highlight:true},
+  {k:'    depends_on', rest:':'},
+  {val:'      - Frontend - Build'},
+  {val:'      - Backend - Build'},
+  {k:'    runs-on', rest:':'},
+  {k:'      type', rest:': e1-standard-2'},
+  {k:'      image', rest:': ubuntu-2004'},
+  {k:'    steps', rest:':'},
+  {val:'      - name: Download build artifacts'},
+  {val:'        command: teamcity artifact:download'},
+  {val:'      - name: Publish npm package'},
+  {val:'        command: npm publish --registry=https://npm.internal.corp'},
+  {val:'      - name: Deploy backend artifact'},
+  {val:'        task: maven'},
+  {val:'        goals: deploy -DskipTests'},
+];
+
+class Component extends DCLogic {
+  badgeRef = React.createRef();
+  chatBarRef = React.createRef();
+
+  state = {
+    activeTab: this.props.startTab === 'yaml' ? 'yaml' : 'visual',
+    isConverted: true,
+    bannerVisible: true,
+    showSaveConfirm: false,
+    showChanges: false,
+    badgeMessageOpen: false,
+    saved: false,
+    savedLabel: '',
+    hasShownFirstSuccessSurvey: false,
+    surveyResponded: false,
+    surveyDeclined: false,
+    showChatBar: false,
+    chatBarTooltipOpen: false,
+    sidebarExpanded: false,
+    rightPanelMode: 'pipeline',
+    selectedJobId: 'publish',
+    jobDropdownOpen: false,
+  };
+
+  JOBS = {
+    publish: { name: 'Publish artifacts', num: 'Job 1' },
+    frontend: { name: 'Frontend - Build', num: 'Job 2' },
+    backend: { name: 'Backend - Build', num: 'Job 3' },
+  };
+  selectPipelineMode = () => this.setState({ rightPanelMode: 'pipeline', jobDropdownOpen: false });
+  selectSelectedJobMode = () => this.setState({ rightPanelMode: 'job', jobDropdownOpen: false });
+  selectJob = (id, e) => { if (e) e.stopPropagation(); this.setState({ rightPanelMode: 'job', selectedJobId: id, jobDropdownOpen: false }); };
+  selectJobPublish = (e) => this.selectJob('publish', e);
+  selectJobFrontend = (e) => this.selectJob('frontend', e);
+  selectJobBackend = (e) => this.selectJob('backend', e);
+  toggleJobDropdown = (e) => { e.stopPropagation(); this.setState(s => ({ jobDropdownOpen: !s.jobDropdownOpen })); };
+
+  componentDidMount() {
+    this._onDocClick = (e) => {
+      if (this.state.badgeMessageOpen && this.badgeRef.current && !this.badgeRef.current.contains(e.target)) {
+        this.setState({ badgeMessageOpen: false });
+      }
+      if (this.state.chatBarTooltipOpen && this.chatBarRef.current && !this.chatBarRef.current.contains(e.target)) {
+        this.setState({ chatBarTooltipOpen: false });
+      }
+      if (this.state.jobDropdownOpen) this.setState({ jobDropdownOpen: false });
+    };
+    document.addEventListener('click', this._onDocClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this._onDocClick);
+    clearTimeout(this._toastTimer);
+    clearTimeout(this._surveyModalTimer);
+  }
+
+  doSave(label) {
+    this.setState({ saved: true, savedLabel: label });
+    clearTimeout(this._toastTimer);
+    this._toastTimer = setTimeout(() => this.setState({ saved: false }), 2800);
+  }
+
+  renderVals() {
+    const s = this.state;
+    const showChanges = s.showChanges;
+
+    const pipelineName = this.props.pipelineName || 'Demo Pipeline';
+    const codeLines = KEY_LINES.map((l, i) => {
+      const n = String(i + 1);
+      const rest = (l.rest || '').replace('__PIPELINE_NAME__', pipelineName);
+      const markerColor = showChanges && l.mark ? (l.mark === 'added' ? '#5FB865' : '#4A86E8') : 'transparent';
+      const markerTitle = showChanges && l.was ? l.was : '';
+      const bg = l.highlight ? '#E1DEFF' : 'transparent';
+      return {
+        n, isVal: !!l.val, isKey: !l.val, valText: l.val || '',
+        keyText: l.k || '', rest,
+        cursor: !!l.highlight, bg, markerColor, markerTitle,
+      };
+    });
+
+    const pipelineSettingsRows = [
+      { label: 'Parameters', count: 0 },
+      { label: 'Secrets', count: 0 },
+      { label: 'Pipeline Dependencies', count: 0 },
+      { label: 'Auto-Run Pipeline', count: 0 },
+    ];
+    const activeTabPillStyle = 'background:#F5F3FF;box-shadow:inset 0 0 0 1.5px #6F5CFF;';
+    const inactiveTabPillStyle = 'background:#fff;box-shadow:inset 0 0 0 1px #D3D5DB;';
+    const isPipelineMode = s.rightPanelMode === 'pipeline';
+    const isJobMode = s.rightPanelMode === 'job';
+    const selectedJob = this.JOBS[s.selectedJobId];
+    const activeCard = 'box-shadow:0 0 0 2px #6F5CFF;';
+    const inactiveCard = 'box-shadow:0 1px 2px rgba(0,28,54,.04),inset 0 0 0 1px #D3D5DB;';
+
+    const JOB_STEPS = {
+      publish: [
+        { num: 1, runnerLabel: 'Command Line', name: 'Download build artifacts', meta: ['Source: Frontend - Build, Backend - Build', 'Path: ./artifacts'] },
+        { num: 2, runnerLabel: 'Node.js', name: 'Publish npm package', meta: ['Command: npm publish --registry=https://npm.internal.corp', 'Execute: If all prior steps succeeded'] },
+        { num: 3, runnerLabel: 'Maven', name: 'Deploy backend artifact', meta: ['Goals: deploy -DskipTests', 'Path to POM: pom.xml'] },
+      ],
+      frontend: [
+        { num: 1, runnerLabel: 'Command Line', name: 'Install dependencies', meta: ['Command: npm ci'] },
+        { num: 2, runnerLabel: 'Command Line', name: 'Lint', meta: ['Command: npm run lint'] },
+        { num: 3, runnerLabel: 'Node.js', name: 'Build production bundle', meta: ['Command: npm run build', 'Execute: If all prior steps succeeded'] },
+        { num: 4, runnerLabel: 'Command Line', name: 'Run unit tests', meta: ['Command: npm test -- --ci --coverage'] },
+      ],
+      backend: [
+        { num: 1, runnerLabel: 'Maven', name: 'Compile & package', meta: ['Path to POM: pom.xml', 'Goals: clean package -DskipTests'] },
+        { num: 2, runnerLabel: 'Maven', name: 'Run unit tests', meta: ['Goals: test', 'Execute: If all prior steps succeeded'] },
+      ],
+    };
+    const JOB_DEPS = {
+      publish: ['Frontend - Build', 'Backend - Build'],
+      frontend: [],
+      backend: [],
+    };
+    const buildSteps = JOB_STEPS[s.selectedJobId] || JOB_STEPS.publish;
+    const selectedJobDeps = JOB_DEPS[s.selectedJobId] || [];
+    const runners = [
+      { iconSrc: './assets/icon-runner-script.png', label: 'SCRIPT' },
+      { iconSrc: './assets/icon-runner-maven.png', label: 'MAVEN' },
+      { iconSrc: './assets/icon-runner-gradle.png', label: 'GRADLE' },
+      { iconSrc: './assets/icon-runner-nodejs.png', label: 'NODE JS' },
+      { iconSrc: './assets/icon-runner-unity.png', label: 'UNITY' },
+      { iconSrc: './assets/icon-runner-dotnet.png', label: '.NET' },
+    ].map(r => ({ ...r, iconEl: r.iconHtml ? React.createElement('span', { style: { display: 'flex' }, dangerouslySetInnerHTML: { __html: r.iconHtml } }) : null }));
+
+    const activeTabStyle = 'background:#F7F6FF;box-shadow:inset 0 0 0 1px #9789FF;font-weight:500;';
+
+    return {
+      projectName: this.props.projectName || 'Coherent project',
+      pipelineName: this.props.pipelineName || 'Demo Pipeline',
+      isVisual: s.activeTab === 'visual',
+      isYaml: s.activeTab === 'yaml',
+      visualTabStyle: s.activeTab === 'visual' ? activeTabStyle : '',
+      yamlTabStyle: s.activeTab === 'yaml' ? activeTabStyle : '',
+      bannerVisible: s.bannerVisible,
+      isConverted: s.isConverted,
+      showSaveConfirm: s.showSaveConfirm,
+      showChanges: s.showChanges,
+      changesButtonLabel: s.showChanges ? 'Hide changes' : 'Show changes',
+      badgeMessageOpen: s.badgeMessageOpen,
+      badgeRef: this.badgeRef,
+      saved: s.saved,
+      savedLabel: s.savedLabel,
+      codeLines,
+      pipelineSettingsRows,
+      buildSteps,
+      selectedJobDeps,
+      selectedJobDepsText: selectedJobDeps.join(', '),
+      runners,
+      isPipelineMode,
+      isJobMode,
+      selectedJobName: selectedJob.name,
+      selectedJobNum: selectedJob.num,
+      pipelineTabStyle: isPipelineMode ? activeTabPillStyle : inactiveTabPillStyle,
+      jobTabStyle: isJobMode ? activeTabPillStyle : inactiveTabPillStyle,
+      jobDividerColor: isJobMode ? 'rgba(111,92,255,.3)' : '#D3D5DB',
+      pipelineZ: isPipelineMode ? 'z-index:1;' : 'z-index:0;',
+      jobZ: isJobMode ? 'z-index:1;' : 'z-index:0;',
+      pipelineLabelColor: isPipelineMode ? '#6F5CFF' : '#27282E',
+      canvasBoxStyle: isPipelineMode ? 'background:#F3F3FF;border:2px solid #6F5CFF;' : 'background:#F7F8FA;border:2px solid #DFE1E5;',
+      publishCardStyle: isJobMode && s.selectedJobId === 'publish' ? activeCard : inactiveCard,
+      frontendCardStyle: isJobMode && s.selectedJobId === 'frontend' ? activeCard : inactiveCard,
+      backendCardStyle: isJobMode && s.selectedJobId === 'backend' ? activeCard : inactiveCard,
+      jobDropdownOpen: s.jobDropdownOpen,
+      toggleJobDropdown: this.toggleJobDropdown,
+      selectPipelineMode: this.selectPipelineMode,
+      selectSelectedJobMode: this.selectSelectedJobMode,
+      selectJobPublish: this.selectJobPublish,
+      selectJobFrontend: this.selectJobFrontend,
+      selectJobBackend: this.selectJobBackend,
+      showAiAssistant: this.props.showAiAssistant ?? true,
+      bannerBright: true,
+      bannerPastel: false,
+      bannerBoxStyle: 'background:linear-gradient(90deg,#7C4DFF 0%,#6F5CFF 45%,#4C6FFF 100%);box-shadow:0 4px 16px rgba(111,92,255,.35);',
+      bannerTextColor: '#fff',
+      bannerLinkColor: '#fff',
+      bannerCloseColor: 'rgba(255,255,255,.85)',
+      showBanner: () => this.setState(st => ({ bannerVisible: !st.bannerVisible })),
+      showChatBar: s.showChatBar,
+      sidebarExpanded: s.sidebarExpanded,
+      sidebarCollapsed: !s.sidebarExpanded,
+      sidebarPanelWidth: s.sidebarExpanded ? '300px' : '32px',
+      sidebarPanelAlign: s.sidebarExpanded ? 'stretch' : 'center',
+      mainContentLeft: s.sidebarExpanded ? '364px' : '96px',
+      chatBarJustify: s.sidebarExpanded ? 'flex-end' : 'center',
+      chatBarPad: s.sidebarExpanded ? '12px' : '0px',
+      toggleSidebar: () => this.setState(st => ({ sidebarExpanded: !st.sidebarExpanded })),
+      sidebarTreeItems: TREE_ITEMS.map(it => ({
+        ...it,
+        label: it.label === 'Smart Pipeline' ? (this.props.pipelineName || 'Demo Pipeline') : it.label,
+        iconEl: React.createElement('span', { style: { display: 'flex' }, dangerouslySetInnerHTML: { __html: it.icon } }),
+      })),
+      chatBarTooltipOpen: s.chatBarTooltipOpen,
+      chatBarRef: this.chatBarRef,
+      toggleChatBar: () => this.setState(st => ({ showChatBar: !st.showChatBar, chatBarTooltipOpen: false })),
+      toggleChatBarTooltip: (e) => { e.stopPropagation(); this.setState(st => ({ chatBarTooltipOpen: !st.chatBarTooltipOpen })); },
+      closeChatBarTooltip: (e) => { e.stopPropagation(); this.setState({ chatBarTooltipOpen: false }); },
+
+      showVisual: () => this.setState({ activeTab: 'visual' }),
+      showYaml: () => this.setState({ activeTab: 'yaml' }),
+      openSave: () => this.setState({ showSaveConfirm: true, saveIntent: 'save' }),
+      openSaveAndRun: () => this.setState({ showSaveConfirm: true, saveIntent: 'saveAndRun' }),
+      closeSave: () => this.setState({ showSaveConfirm: false }),
+      stop: (e) => e.stopPropagation(),
+      confirmSave: () => {
+        const wasConverted = this.state.isConverted;
+        const intent = this.state.saveIntent;
+        this.setState({ isConverted: false, showSaveConfirm: false, badgeMessageOpen: false });
+        if (intent === 'saveAndRun') {
+          if (this.props.onOpenRun) this.props.onOpenRun();
+          return;
+        }
+        this.doSave(wasConverted ? 'Saved — file updated to v2' : 'Changes saved');
+      },
+      toggleBadge: (e) => { e.stopPropagation(); this.setState(st => ({ badgeMessageOpen: !st.badgeMessageOpen })); },
+      toggleShowChanges: () => this.setState(st => ({ showChanges: !st.showChanges, badgeMessageOpen: false })),
+      collapseBanner: () => this.setState({ bannerVisible: false }),
+      dismissToast: () => this.setState({ saved: false }),
+      exitSettings: () => (this.props.onOpenRun ? this.props.onOpenRun() : (this.props.onExit ? this.props.onExit() : null)),
+      surveySystemEnabled: this.props.surveySystemEnabled ?? true,
+      respondSurvey: () => this.setState({ chatBarTooltipOpen: false, surveyResponded: true }),
+      declineSurvey: () => this.setState({ surveyDeclined: true }),
+      resetFlow: () => {
+        clearTimeout(this._surveyModalTimer);
+        this.setState({
+          activeTab: 'visual', isConverted: true,
+          showSaveConfirm: false, showChanges: false, badgeMessageOpen: false, saved: false,
+          hasShownFirstSuccessSurvey: false, surveyResponded: false, surveyDeclined: false,
+        });
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

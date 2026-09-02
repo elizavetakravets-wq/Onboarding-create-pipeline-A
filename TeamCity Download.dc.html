@@ -504,7 +504,7 @@
 
   <!-- PIPELINE RUN (SUCCESS) -->
   <sc-if value="{{ isPipelineSuccessRun }}" hint-placeholder-val="{{ false }}">
-    <dc-import name="Pipeline Success Run" project-name="{{ projectName }}" pipeline-name="{{ activePipelineName }}" on-exit="{{ goToDownload }}" on-settings="{{ goToSmartPipeline }}" hint-size="100%,100%"></dc-import>
+    <dc-import name="Pipeline Success Run" project-name="{{ projectName }}" pipeline-name="{{ activePipelineName }}" on-exit="{{ goToDownload }}" on-settings="{{ goToSmartPipeline }}" hint-size="100%,100%" style="flex:1;display:flex;min-height:0;"></dc-import>
   </sc-if>
 
   <!-- CONNECT REPO CONFIG -->
@@ -641,7 +641,7 @@
 
   <!-- SMART PIPELINE (GitHub/GitLab/Bitbucket) -->
   <sc-if value="{{ isSmartPipeline }}" hint-placeholder-val="{{ false }}">
-    <dc-import name="Smart Pipeline" project-name="{{ projectName }}" pipeline-name="{{ activePipelineName }}" on-exit="{{ goToDownload }}" on-open-run="{{ goToPipelineRun }}" hint-size="100%,100%"></dc-import>
+    <dc-import name="Smart Pipeline" project-name="{{ projectName }}" pipeline-name="{{ activePipelineName }}" on-exit="{{ goToDownload }}" on-open-run="{{ goToPipelineRun }}" hint-size="100%,100%" style="flex:1;display:flex;min-height:0;"></dc-import>
   </sc-if>
 
   <!-- PROJECT OVERVIEW (empty project) -->
